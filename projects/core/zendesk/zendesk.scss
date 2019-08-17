@@ -1,0 +1,57 @@
+.chat-btn {
+  $chat-clr: #F86060;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: fixed;
+  left: 8px;
+  bottom: 12px;
+  z-index: var(--zindex-300);
+  background-color: $chat-clr;
+  transition: background-color 0.3s;
+  cursor: pointer;
+
+  path {
+    transition: fill 0.3s;
+  }
+
+  &.active {
+    background-color: var(--color-background-primary);
+    border: 3px solid var(--color-border-regular);
+
+    path {
+      fill: $chat-clr;
+    }
+  }
+}
+
+.btn-loading:before {
+  $loader-width: 3px;
+
+  content: "";
+  position: absolute;
+  width: calc(100% + #{$loader-width} * 2);
+  height: calc(100% + #{$loader-width} * 2);
+  left: -$loader-width;
+  top: -$loader-width;
+  border-radius: inherit;
+  border: $loader-width solid transparent;
+  border-top-color: #FFFFFF;
+  animation: chat-loading 1s ease-out infinite;
+}
+
+svg {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes chat-loading {
+  to {
+    transform: rotate(1turn);
+  }
+}
