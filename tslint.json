@@ -1,0 +1,18 @@
+{
+  "extends": "@vision/lint",
+  "linterOptions": {
+    "exclude": ["./tools/**/*"]
+  },
+  "rules": {
+    "match-default-export-name": false,
+    "ordered-imports": {
+      "severity": "off"
+    },
+    "no-string-literal": {
+      "severity": "off"
+    },
+    "no-console": {
+      "severity": "warning"
+    }
+  }
+}

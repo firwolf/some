@@ -1,0 +1,12 @@
+.sub-header
+  ng-container(*ngIf="(slots$ | stream) as slots")
+    ng-container(*ngFor="let component of slots.left")
+      ng-container(*ngComponentOutlet="component")
+
+    .center
+      ng-container(*ngFor="let component of slots.center")
+        ng-container(*ngComponentOutlet="component")
+
+    .bar-item.last.info
+      ng-container(*ngFor="let component of slots.right")
+        ng-container(*ngComponentOutlet="component")

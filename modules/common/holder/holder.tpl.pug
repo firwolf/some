@@ -1,0 +1,7 @@
+.holder-wrapper([class.modal]="isModal", [class.stretch-height]="stretchHeight")
+  .holder
+    img.icon(*ngIf="imgPath", [img]="imgPath")
+    h2 {{ title }}
+    p.text-h6.text-secondary.y-offset-md-m.x-offset-md-l {{ text }}
+    vui-button(*ngIf="btnLabel" color="primary", size="lg", type="button", (click)="btnClick.emit($event)") {{ btnLabel }}
+    ng-content

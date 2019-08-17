@@ -1,0 +1,506 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "cashier": {
+      "root": "projects/cashier",
+      "sourceRoot": "projects/cashier",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "./webpack.config.js",
+              "replaceDuplicatePlugins": true
+            },
+            "outputPath": "dist/cashier",
+            "index": "projects/cashier/index.html",
+            "main": "projects/cashier/main.ts",
+            "polyfills": "projects/cashier/polyfills.ts",
+            "tsConfig": "projects/cashier/tsconfig.app.json",
+            "assets": [
+              "projects/cashier/favicon.ico",
+              "projects/cashier/assets",
+              {
+                "glob": "**/*",
+                "input": "./projects/assets",
+                "output": "./assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@vision/ui/dist/collection/assets/theme",
+                "output": "./assets/themes"
+              },
+              "projects/cashier/manifest.json"
+            ],
+            "styles": [
+              "projects/cashier/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/assets"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/cashier/environments/environment.ts",
+                  "with": "projects/cashier/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "serviceWorker": true
+            },
+            "k8s": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "cashier:build",
+            "proxyConfig": "proxy.conf.js"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "cashier:build:production"
+            },
+            "k8s": {
+              "browserTarget": "cashier:build:k8s"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cashier/test.ts",
+            "polyfills": "projects/cashier/polyfills.ts",
+            "tsConfig": "projects/cashier/tsconfig.spec.json",
+            "karmaConfig": "projects/cashier/karma.conf.js",
+            "styles": [
+              "projects/cashier/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/cashier/favicon.ico",
+              "projects/cashier/assets",
+              "projects/cashier/manifest.json"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cashier/tsconfig.app.json",
+              "projects/cashier/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "trading": {
+      "root": "projects/trading/",
+      "sourceRoot": "projects/trading",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "./webpack.config.js",
+              "replaceDuplicatePlugins": true
+            },
+            "outputPath": "dist/trading",
+            "index": "projects/trading/index.html",
+            "main": "projects/trading/main.ts",
+            "polyfills": "projects/trading/polyfills.ts",
+            "tsConfig": "projects/trading/tsconfig.app.json",
+            "assets": [
+              "projects/trading/favicon.ico",
+              "projects/trading/assets",
+              {
+                "glob": "**/*",
+                "input": "./projects/assets",
+                "output": "./assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@vision/ui/dist/collection/assets/theme",
+                "output": "./assets/themes"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/vision-chart/assets",
+                "output": "./"
+              },
+              "projects/trading/manifest.json"
+            ],
+            "styles": [
+              "projects/trading/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/assets"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/trading/environments/environment.ts",
+                  "with": "projects/trading/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "serviceWorker": true
+            },
+            "k8s": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "trading:build",
+            "proxyConfig": "proxy.conf.js",
+            "port": 4201
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "trading:build:production"
+            },
+            "k8s": {
+              "browserTarget": "trading:build:k8s"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "trading:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/trading/test.ts",
+            "polyfills": "projects/trading/polyfills.ts",
+            "tsConfig": "projects/trading/tsconfig.spec.json",
+            "karmaConfig": "projects/trading/karma.conf.js",
+            "styles": [
+              "projects/trading/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/trading/favicon.ico",
+              "projects/trading/assets",
+              "projects/trading/manifest.json"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/trading/tsconfig.app.json",
+              "projects/trading/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "info": {
+      "root": "projects/info/",
+      "sourceRoot": "projects/info",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "./webpack.config.js",
+              "replaceDuplicatePlugins": true
+            },
+            "outputPath": "dist/info",
+            "index": "projects/info/index.html",
+            "main": "projects/info/main.ts",
+            "polyfills": "projects/info/polyfills.ts",
+            "tsConfig": "projects/info/tsconfig.app.json",
+            "assets": [
+              "projects/info/favicon.ico",
+              "projects/info/assets",
+              {
+                "glob": "**/*",
+                "input": "./projects/assets",
+                "output": "./assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@vision/ui/dist/collection/assets/theme",
+                "output": "./assets/themes"
+              },
+              "projects/info/manifest.json"
+            ],
+            "styles": [
+              "projects/info/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/assets"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/info/environments/environment.ts",
+                  "with": "projects/info/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "info:build",
+            "proxyConfig": "proxy.conf.js",
+            "port": 4202
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "info:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "info:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/info/test.ts",
+            "polyfills": "projects/info/polyfills.ts",
+            "tsConfig": "projects/info/tsconfig.spec.json",
+            "karmaConfig": "projects/info/karma.conf.js",
+            "styles": [
+              "projects/info/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/info/favicon.ico",
+              "projects/info/assets",
+              "projects/info/manifest.json"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/info/tsconfig.app.json",
+              "projects/info/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "home": {
+      "root": "projects/home/",
+      "sourceRoot": "projects/home",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "./webpack.config.js",
+              "replaceDuplicatePlugins": true
+            },
+            "outputPath": "dist/home",
+            "index": "projects/home/index.html",
+            "main": "projects/home/main.ts",
+            "polyfills": "projects/home/polyfills.ts",
+            "tsConfig": "projects/home/tsconfig.app.json",
+            "assets": [
+              "projects/home/favicon.ico",
+              "projects/home/assets",
+              {
+                "glob": "**/*",
+                "input": "./projects/assets",
+                "output": "./assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@vision/ui/dist/collection/assets/theme",
+                "output": "./assets/themes"
+              },
+              "projects/home/manifest.json"
+            ],
+            "styles": [
+              "projects/home/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/assets"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/home/environments/environment.ts",
+                  "with": "projects/home/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "home:build",
+            "proxyConfig": "proxy.conf.js",
+            "port": 4203
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "home:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "home:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/home/test.ts",
+            "polyfills": "projects/home/polyfills.ts",
+            "tsConfig": "projects/home/tsconfig.spec.json",
+            "karmaConfig": "projects/home/karma.conf.js",
+            "styles": [
+              "projects/home/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/home/favicon.ico",
+              "projects/home/assets",
+              "projects/home/manifest.json"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/home/tsconfig.app.json",
+              "projects/home/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "cashier"
+}

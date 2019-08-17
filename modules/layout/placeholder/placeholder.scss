@@ -1,0 +1,26 @@
+.palceholder {
+  // display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-background-primary);
+  z-index: var(--zindex-250);
+
+  .container {
+    width: var(--width-sm-xl);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    @media (min-width: 568px) and (max-width: 767px) {
+      width: var(--width-md-m);
+    }
+
+    @media (min-width: 768px) {
+      width: 513px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+vui-select(
+  #select="",
+  [placeholder]="placeholder",
+  [default-first]="defaultFirst",
+  [multiple]="multiple",
+  [status]="status",
+  (vuiSelect)="onChange($event.detail)",
+)
+  div(slot="options")
+    ng-content

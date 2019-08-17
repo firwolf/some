@@ -1,0 +1,12 @@
+vui-input-counter(
+  #counter="",
+  type="fraction",
+  [min]="min",
+  [max]="max",
+  [step]="step",
+  [disabled]="disabled",
+  [readonly]="readonly",
+  (vuiFocus)="onTouch()",
+  (vuiInputChanged)="onChange($event.detail)"
+)
+  span(slot="placeholder-title") {{ placeholder }}

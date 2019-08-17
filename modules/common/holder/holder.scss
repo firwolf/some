@@ -1,0 +1,45 @@
+.holder-wrapper {
+  width: 100%;
+  height: calc(100vh - 168px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.modal {
+    height: auto;
+  }
+
+  @media (min-width: 568px) {
+    height: calc(100vh - 182px);
+  }
+
+  &.stretch-height {
+    height: 100%;
+
+    @media (min-width: 568px) {
+      height: 100%;
+    }
+  }
+
+  .holder {
+    max-width: 464px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .icon {
+      width: 64px;
+      height: 64px;
+
+      &:before {
+        background-size: contain;
+        left: 0;
+      }
+    }
+
+    vui-button {
+      width: var(--width-sm-xl);
+    }
+  }
+}

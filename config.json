@@ -1,0 +1,73 @@
+{
+  "default": {
+    "captcha_pub_key": "6Lc2WiQUAAAAAF3m65asH6KKROD4l5R_ld997Rlm",
+    "billing": {
+      "payment_asia": {
+        "banks": {
+          "ID": [
+            {
+              "id": 11,
+              "title": "Bank BNI"
+            },
+            {
+              "id": 12,
+              "title": "Bank BCA"
+            },
+            {
+              "id": 13,
+              "title": "Bank BRI"
+            },
+            {
+              "id": 14,
+              "title": "Bank Mandiri"
+            }
+          ],
+          "MY": [
+            {
+              "id": 2,
+              "title": "Hong Leong"
+            },
+            {
+              "id": 3,
+              "title": "Maybank"
+            },
+            {
+              "id": 4,
+              "title": "CIMB"
+            },
+            {
+              "id": 6,
+              "title": "Public Bank"
+            }
+          ],
+          "VN": [
+            {
+              "id": 21,
+              "title": "Vietin"
+            },
+            {
+              "id": 22,
+              "title": "VietCom"
+            },
+            {
+              "id": 23,
+              "title": "BIDV"
+            },
+            {
+              "id": 24,
+              "title": "TechCom Bank"
+            },
+            {
+              "id": 25,
+              "title": "SacomBank"
+            },
+            {
+              "id": 26,
+              "title": "DongaBank"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.dashboard-aside
+  .dashboard(spot="dashboard")
+    .item(
+      *ngFor="let item of items$ | stream",
+      (click)="select(item)",
+      [class.active]="isActive(item)")
+      vui-badge([count]="item.menu.badge$ | stream")
+        vui-icon([name]="item.menu.icon")
+      p.text-body.text-grey-60 {{ item.title.items$ | stream }}
+      //- ng-container(*ngIf="(item.menu.badge$ | stream); else simple")
+      //-   vui-badge(dot="true")
+      //-     vui-icon([name]="item.menu.icon")
+      //- ng-template(#simple="")
+      //-   vui-icon([name]="item.menu.icon")
+
+  vui-sidebar(
+    [isOpen]="selected$ | stream",
+    close-button="true",
+    (vuiClose)="reset()")
+    div(slot="title")
+      // по-хорошему, ngIf должен быть выше, но тогда не будет анимации на сайдбаре
+      // без подписки на поток периодически ловим варнинги ангуляра
+      app-breadcrumbs(
+        *ngIf="selected$ | stream as item",
+        [items]="item?.title.items$ | stream",
+        (select)="item?.title.onBack($event)")
+    vui-scroll(slot="content", [infinity-scroll]="selected?.infinityScroll")
+      div(slot="body")
+        ng-container(*ngComponentOutlet="selected?.content")

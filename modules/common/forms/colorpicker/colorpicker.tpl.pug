@@ -1,0 +1,7 @@
+.colors
+  .color(
+    *ngFor="let color of colors",
+    [ngClass]="{'active': (value$ | stream:true) === color}",
+    [ngStyle]="{'background-color': !outline && color, 'border-color': outline && color}",
+    (click)="onChange(color)")
+    vui-icon(name="check")

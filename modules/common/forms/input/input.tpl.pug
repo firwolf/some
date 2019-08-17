@@ -1,0 +1,12 @@
+vui-input(
+  #input="",
+  [type]="type",
+  [placeholder]="placeholder",
+  [disabled]="disabled",
+  [readonly]="readonly",
+  [size]="size",
+  [status]="status",
+  [mask]="mask",
+  (vuiInput)="onChange($event.detail)",
+  (vuiFocus)="onTouch()",
+)
